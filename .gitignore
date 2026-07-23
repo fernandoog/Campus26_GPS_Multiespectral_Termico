@@ -1,0 +1,10 @@
+﻿# Imagenes y proyecto Metashape (demasiado grandes para GitHub; ~8 GB locales)
+Multiespectral/**/*.JPG
+Multiespectral/**/*.TIF
+Multiespectral/**/*.tif
+Multiespectral/**/*.jpg
+Térmico/
+Termico/
+Campus26_GPS_Multiespectral_Termico.files/
+*.psx
+*.PSX
