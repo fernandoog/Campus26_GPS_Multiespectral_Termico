@@ -2,6 +2,7 @@
 
 Contexto del datum: [`DATUM.md`](DATUM.md).  
 Coded targets: [`METASHAPE_CODED_TARGETS.md`](METASHAPE_CODED_TARGETS.md).  
+GPU / CUDA: [`METASHAPE_GPU_CUDA.md`](METASHAPE_GPU_CUDA.md).  
 Docs: [Height above geoid](https://agisoft.freshdesk.com/support/solutions/articles/31000148332-how-to-use-height-above-geoid-for-the-coordinate-system) · [Geoides Agisoft](https://www.agisoft.com/downloads/geoids/).
 
 > Geoide / CRS compuestos: **Metashape Professional**. Si *Vertical datum out of range* → [Plan B](#plan-b-sin-geoide).

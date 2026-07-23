@@ -50,9 +50,10 @@ Pares `*_T.JPG` (térmico) y `*_V.JPG` (visible).
 
 | Herramienta | Guía |
 | --- | --- |
-| [Agisoft Metashape](https://www.agisoft.com/) | [`guias/METASHAPE.md`](guias/METASHAPE.md) · [`guias/METASHAPE_CODED_TARGETS.md`](guias/METASHAPE_CODED_TARGETS.md) |
+| [Agisoft Metashape](https://www.agisoft.com/) | [`guias/METASHAPE.md`](guias/METASHAPE.md) · [`guias/METASHAPE_GPU_CUDA.md`](guias/METASHAPE_GPU_CUDA.md) · [`guias/METASHAPE_CODED_TARGETS.md`](guias/METASHAPE_CODED_TARGETS.md) |
 | [OpenDroneMap](https://www.opendronemap.org/) / WebODM | [`guias/OPENDRONEMAP.md`](guias/OPENDRONEMAP.md) |
 | [QGIS](https://qgis.org/) | [`guias/QGIS.md`](guias/QGIS.md) |
+| Comparativa Metashape ↔ ODM | [`guias/COMPARATIVA_METASHAPE_ODM.md`](guias/COMPARATIVA_METASHAPE_ODM.md) |
 
 ## Licencia / uso
 
