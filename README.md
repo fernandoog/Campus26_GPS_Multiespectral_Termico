@@ -8,23 +8,25 @@ Curso organizado por la Escuela Superior y Técnica de Ingenieros de Minas (ULE)
 
 | Carpeta / archivo | Descripción |
 | --- | --- |
-| `GPS_Campus/` | GCP medidos con [Sokkia GCX3](https://www.topconpositioning.asia/jp/en/products/brand/sokkia/gcx3/) (ortométricas EGM08-REDNAP) y shapefile asociado |
-| `Multiespectral/` | En GitHub: solo ficheros **PPK** del vuelo M3M (`.obs`, `.nav`, `.MRK`, `.bin`). Las imágenes RGB/MS (~6 GB) se guardan en local |
-| `Térmico/` | Vuelo M3T en local (~2,5 GB); no versionado en GitHub por tamaño |
-| `reference_export.txt` | Posiciones de referencia de las imágenes multiespectrales (WGS84) |
-| `es_ign_EGM08_REDNAP.tif` | Modelo de geoide IGN (EGM08-REDNAP) para conversión de altitudes |
-| `GUIA_ALTURAS.md` | Guía para unificar alturas elipsoidales (dron RTK) y ortométricas (GCP) en Metashape y OpenDroneMap |
-| `GUIA_CODED_TARGETS.md` | Guía de coded targets y scale bars en Metashape (detección automática de dianas) |
+| `GPS_Campus/` | GCP GCX3, shapefile y ficheros para WebODM (`gcp_webodm_gcpi.txt`, etc.) |
+| `Multiespectral/` | En GitHub: solo ficheros **PPK** del vuelo M3M. Imágenes RGB/MS en local |
+| `Térmico/` | Vuelo M3T en local; no versionado en GitHub por tamaño |
+| `reference_export.txt` | Posiciones de referencia multiespectrales (WGS84) |
+| `es_ign_EGM08_REDNAP.tif` | Geoide IGN EGM08-REDNAP |
+| `guias/` | Guías **por programa**: Metashape, OpenDroneMap, QGIS ([índice](guias/README.md)) |
 
-> **Nota:** el dataset completo de imágenes supera **8 GB**. GitHub rechaza ese push; este repositorio publica guías, GCP, geoide, PPK y metadatos. Las carpetas de fotos (`Multiespectral/*.JPG|*.TIF`, `Térmico/`) quedan en local (ver `.gitignore`).
+> **Nota:** el dataset de imágenes supera **8 GB**. En GitHub solo guías, GCP, geoide, PPK y metadatos (ver `.gitignore`).
 
 ## GPS / puntos de control
 
-Medidos con receptor GNSS **[Sokkia GCX3](https://www.topconpositioning.asia/jp/en/products/brand/sokkia/gcx3/)** (RTK de red / rover) sobre las marcas del suelo (cuadrado partido en el vértice). Cotas expresadas como **altura ortométrica** respecto al geoide **EGM08-REDNAP** (`es_ign_EGM08_REDNAP.tif`).
+Medidos con **[Sokkia GCX3](https://www.topconpositioning.asia/jp/en/products/brand/sokkia/gcx3/)** sobre marcas del suelo. Cotas **ortométricas** EGM08-REDNAP.
 
-- `GPS_Campus/CAMPUS27.txt` — puntos `P01`…`P09` en formato `ID Este Norte Cota`.
-- Sistema de referencia: **ETRS89 / UTM huso 30N** ([EPSG:25830](https://epsg.io/25830)), según `GPS_Campus/_POINTSZ.prj`.
-- Shapefile `_POINTSZ.*` con la geometría de los puntos.
+- `GPS_Campus/CAMPUS27.txt` — H ortométrica (~836 m)
+- `GPS_Campus/CAMPUS27_elipsoidal.txt` — h = H+55.3 (plan B Metashape)
+- `GPS_Campus/gcp_webodm_gcpi.txt` — import GCP Interface WebODM
+- CRS planimétrico: **ETRS89 / UTM 30N** ([EPSG:25830](https://epsg.io/25830))
+
+Detalle del datum: [`guias/DATUM.md`](guias/DATUM.md).
 
 ## Multiespectral (`Multiespectral/DJI_202607221215_007_Campus26m3m/`)
 
@@ -32,35 +34,26 @@ Misión DJI del 22/07/2026 (~12:15). Por cada toma:
 
 | Sufijo | Sensor |
 | --- | --- |
-| `_D.JPG` | RGB (cámara visible) |
+| `_D.JPG` | RGB |
 | `_MS_G.TIF` | Verde |
 | `_MS_R.TIF` | Rojo |
 | `_MS_RE.TIF` | Red Edge |
-| `_MS_NIR.TIF` | Infrarrojo cercano |
+| `_MS_NIR.TIF` | NIR |
 
-También incluye ficheros **PPK** del vuelo (`.obs`, `.nav`, `.MRK`, `.bin`) para postproceso GNSS de precisión.
-
-`reference_export.txt` lista las coordenadas WGS84 (EPSG:4326) y orientaciones asociadas a cada imagen (exportación tipo Metashape/Agisoft).
+PPK: `.obs`, `.nav`, `.MRK`, `.bin`. Metadatos: `reference_export.txt`.
 
 ## Térmico (`Térmico/DJI_202607221155_007_Campus26m3t/`)
 
-Misión del mismo día (~11:55). Imágenes JPG emparejadas:
+Pares `*_T.JPG` (térmico) y `*_V.JPG` (visible).
 
-- `*_T.JPG` — térmico  
-- `*_V.JPG` — visible  
+## Software y guías
 
-## Uso previsto
-
-Material de práctica para el flujo fotogramétrico del curso: importación de imágenes, sistemas de referencia, ajuste con GCP/PPK, densificación, ortomosaicos / MDS y exportación a SIG.
-
-## Software
-
-| Herramienta | Rol |
+| Herramienta | Guía |
 | --- | --- |
-| [Agisoft Metashape](https://www.agisoft.com/) (versión demo) | Procesamiento fotogramétrico del curso: alineación, nubes de puntos, ortomosaicos y MDS. Markers / coded targets requieren **Metashape Pro** (ver `GUIA_CODED_TARGETS.md`) |
-| [QGIS](https://qgis.org/) | Visualización, análisis y exportación SIG de los productos generados |
-| [OpenDroneMap](https://www.opendronemap.org/) | Prueba personal en paralelo (flujo open source alternativo a Metashape) |
+| [Agisoft Metashape](https://www.agisoft.com/) | [`guias/METASHAPE.md`](guias/METASHAPE.md) · [`guias/METASHAPE_CODED_TARGETS.md`](guias/METASHAPE_CODED_TARGETS.md) |
+| [OpenDroneMap](https://www.opendronemap.org/) / WebODM | [`guias/OPENDRONEMAP.md`](guias/OPENDRONEMAP.md) |
+| [QGIS](https://qgis.org/) | [`guias/QGIS.md`](guias/QGIS.md) |
 
 ## Licencia / uso
 
-Datos generados en el marco del curso de verano de la Universidad de León. Consulte a la dirección del curso antes de redistribuirlos fuera del ámbito docente.
+Datos del curso de verano de la Universidad de León. Consulte a la dirección del curso antes de redistribuir fuera del ámbito docente.
